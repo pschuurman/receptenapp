@@ -1,0 +1,13 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+li {
+    display: inline;
+    margin: 5px;
+}
+
+.active-link {
+    text-decoration: none;
+}

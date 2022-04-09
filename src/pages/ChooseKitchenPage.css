@@ -1,0 +1,42 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+.instruction {
+    margin-left: 5px;
+    margin-bottom: 0px;
+    width: 920px;
+    font-size: smaller;
+}
+
+.kitchen-names {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 5px;
+    text-align: end;
+    font-size: smaller;
+}
+
+.region {
+    margin-top: 5px;
+    margin-left: 5px;
+
+}
+
+.instructions {
+    width: 300px;
+    background-color: wheat;
+}
+
+.choose-kitchen {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+
+
+
+
