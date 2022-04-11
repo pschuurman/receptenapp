@@ -28,13 +28,10 @@ function ChooseKitchenPage() {
 
     return (
         <>
-
                 <NavBar />
                 <SearchBarKitchen setKitchenHandler={setKitchen}/>
                 <div className="kitchen-names">
                     <p className="region">African</p>
-                    <p className="region">American</p>
-                    <p className="region">British</p>
                     <p className="region">Cajun</p>
                     <p className="region">Caribbean</p>
                     <p className="region">Chinese</p>
@@ -51,10 +48,8 @@ function ChooseKitchenPage() {
                     <p className="region">Korean</p>
                     <p className="region">Latin American</p>
                     <p className="region">Mediterranean</p>
-                    <p className="region">Mexican</p>
                     <p className="region">Middle Eastern</p>
                     <p className="region">Nordic</p>
-                    <p className="region">Southern</p>
                     <p className="region">Spanish</p>
                     <p className="region">Thai</p>
                     <p className="region">Vietnamese</p>
@@ -64,10 +59,24 @@ function ChooseKitchenPage() {
                 {kitchenData && <>
                     <div className="choose-kitchen">{kitchenData.results.map((kitchenList) => {
                         return (<article key={kitchenList.id}>
-                                    <p>{kitchenList.title}</p>
-                                    <img src={kitchenList.image} />
-                                    <div>Ready in: {kitchenList.readyInMinutes} minutes</div>
-                                </article>
+                                        <p>{kitchenList.title}</p>
+                                        <img src={kitchenList.image} />
+                                        <div>Ready in: {kitchenList.readyInMinutes} minutes</div>
+                                <div className="ingredients">{kitchenList.analyzedInstructions[0].steps[0].ingredients.map((ingredients) => {
+                                    return (
+                                        <article key={ingredients.name}>
+                                            <div>{ingredients.name}</div>
+                                        </article>
+                                    )})}
+                                </div>
+                                <div className="instructions">{kitchenList.analyzedInstructions[0].steps.map((banaan) => {
+                                    return (
+                                        <article key={banaan.step}>
+                                            <div>{banaan.step}</div>
+                                        </article>
+                                    )})}
+                                </div>
+                        </article>
                         )})}
                     </div>
                 </>

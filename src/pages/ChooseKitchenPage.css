@@ -10,6 +10,14 @@
     font-size: smaller;
 }
 
+.ingredients {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: end;
+    font-size: smaller;
+}
+
 .kitchen-names {
     display: flex;
     flex-direction: row;
@@ -22,12 +30,12 @@
 .region {
     margin-top: 5px;
     margin-left: 5px;
-
 }
 
 .instructions {
     width: 300px;
     background-color: wheat;
+    font-size: smaller;
 }
 
 .choose-kitchen {

@@ -13,8 +13,8 @@ function WhatsInYourFridgePage() {
     useEffect(()=> {
         async function getData () {
             try {
-                const result = await axios.get(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredient}&number=12&apiKey=${apiKey}`);
-                console.log(result.data);
+                const result = await axios.get(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredient}&number=9&apiKey=${apiKey}`);
+                console.log(result.data[0].missedIngredients[0].name);
                 setIngredientsData(result.data);
             } catch (e) {
                 console.error(e)
@@ -31,12 +31,11 @@ function WhatsInYourFridgePage() {
                 <SearchBar setIngredientsHandler={setIngredient} />
 
                 {ingredientsData && <>
-                    <div className="fridge">
-                        {ingredientsData.map((kitchenList) => {
-                            return (<article key={kitchenList.id}>
-                                        <p>{kitchenList.title}</p>
-                                        <img className="imagesize" src={kitchenList.image}/>
-                                        </article>
+                    <div className="fridge">{ingredientsData.map((ingredientsList) => {
+                            return (<article key={ingredientsList.id}>
+                                        <p>{ingredientsList.title}</p>
+                                        <img className="imagesize" src={ingredientsList.image}/>
+                                    </article>
                         )})}
                     </div>
                 </>
