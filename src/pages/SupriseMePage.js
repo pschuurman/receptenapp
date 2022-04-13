@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
 import NavBar from "../components/NavBar/NavBar";
+import './tiles.css';
 
 const apiKey = '5ab533819047439182158dd8d85e7c56';
 
@@ -19,20 +20,37 @@ function SupriseMePage() {
 
     return (
         <>
-            <NavBar />
+            <NavBar/>
             <button type="button" onClick={SupriseMeData}>
                 Geef me een recept!
             </button>
 
             <div>
                 {Object.keys(supriseData).length > 0 &&
-                    <>
-                        <article>
-                            <p>{supriseData.recipes[0].title}</p>
-                            <img src={supriseData.recipes[0].image} />
-                        </article>
-                        <p>Bereidingstijd: {supriseData.recipes[0].readyInMinutes} minuten</p>
-                    </>
+                <>
+                    <article>
+                        <p>{supriseData.recipes[0].title}</p>
+                        <img src={supriseData.recipes[0].image}/>
+                    </article>
+                    <p>Bereidingstijd: {supriseData.recipes[0].readyInMinutes} minuten</p>
+                    <div className="ingredients">{supriseData.recipes[0].analyzedInstructions[0].steps[0].ingredients.map((banaan) => {
+                        return (
+                            <article key={banaan.name}>
+                                <div>{banaan.name}</div>
+                            </article>
+                        );
+                    })}
+                    </div>
+                    <div className="instructions">{supriseData.recipes[0].analyzedInstructions[0].steps.map((banaan) => {
+                        return (
+                            <article key={banaan.step}>
+                                <div>{banaan.step}</div>
+                            </article>
+                        );
+                    })}
+                    </div>
+
+                </>
                 }
             </div>
         </>
@@ -41,3 +59,5 @@ function SupriseMePage() {
 }
 
 export default SupriseMePage;
+
+

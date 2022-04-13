@@ -2,54 +2,80 @@ import React, {useState, useEffect} from 'react';
 import axios from "axios";
 import NavBar from "../components/NavBar/NavBar";
 import SearchBarMood from "../components/SearchBarMood/SearchBarMood";
+import './tiles.css';
 
-const apiKey = '5ab533819047439182158dd8d85e7c56'
+const apiKey = '5ab533819047439182158dd8d85e7c56';
 
 function MoodForFoodPage() {
-    const [moodForData, setMoodForData] = useState( null);
+    const [moodForData, setMoodForData] = useState(null);
     const [mood, setMood] = useState('');
 
-    useEffect(()=> {
-        async function getMoodData () {
+    useEffect(() => {
+        async function getMoodData() {
             try {
-                const result = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?type=${mood}&addRecipeInformation=true&apiKey=${apiKey}`);
+                const result = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?&type=${mood}&addRecipeInformation=true&apiKey=${apiKey}`);
                 console.log(result.data);
                 setMoodForData(result.data);
             } catch (e) {
-                console.error(e)
+                console.error(e);
             }
         }
+
         if (mood)
             getMoodData();
-    },[mood])
+    }, [mood]);
 
 
     return (
         <>
-            <NavBar />
+            <NavBar/>
 
-                <SearchBarMood setMoodHandler={setMood} />
-                <ul>
-                    <li>
-                        Je kan kiezen uit:
-                        main course , side dish , dessert
-                        appetizer , salad , bread , breakfast , soup
-                        beverage, sauce , marinade , fingerfood
-                        snack , drink
-                    </li>
-                </ul>
+            <SearchBarMood setMoodHandler={setMood}/>
+
+            <div className="kitchen-names">
+                <p className="region">Kies uit:</p>
+                <p className="region">dessert</p>
+                <p className="region">bread</p>
+                <p className="region">breakfast</p>
+                <p className="region">soup beverage</p>
+                <p className="region">sauce</p>
+                <p className="region">marinade</p>
+                <p className="region">fingerfood snack</p>
+                <p className="region">drink</p>
+
+            </div>
             {moodForData && <>
-                <div className="choose-kitchen">{moodForData.results.map((kitchenList) => {
-                    return (<article key={kitchenList.id}>
-                            <p>{kitchenList.title}</p>
-                            <img src={kitchenList.image} />
-                            <div>Ready in: {kitchenList.readyInMinutes} minutes</div>
+                <div className="choose-kitchen">{moodForData.results.map((moodList) => {
+                    return (<article key={moodList.id}>
+                            <p>{moodList.title}</p>
+                            <img src={moodList.image}/>
+                            <div>Ready in: {moodList.readyInMinutes} minutes</div>
+                            <div
+                                className="ingredients">{moodList.analyzedInstructions[0].steps[0].ingredients.map((ingredients) => {
+                                return (
+                                    <article key={ingredients.name}>
+                                        <div>{ingredients.name}</div>
+                                    </article>
+                                );
+                            })}
+                            </div>
+                            <div className="instructions">{moodList.analyzedInstructions[0].steps.map((banaan) => {
+
+                                return (
+                                    <article key={banaan.step}>
+                                        <div>{banaan.step}</div>
+                                    </article>
+                                );
+                            })}
+                            </div>
                         </article>
-                    )})}
+                    );
+                })}
                 </div>
             </>
             }
         </>
     );
 }
+
 export default MoodForFoodPage;

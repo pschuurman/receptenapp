@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 
-// Added state variable location to App.js
-// Passed state-setter-function as callback prop to SearchBar in App.js
-
 function SearchBarAllergen({setAllergenHandler}) {
     const [allergen, setAllergen] = useState('');
 
