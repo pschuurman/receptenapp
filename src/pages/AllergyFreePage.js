@@ -9,15 +9,24 @@ const apiKey = '5ab533819047439182158dd8d85e7c56';
 function AllergenFreePage() {
     const [allergenData, setAllergenData] = useState(null);
     const [allergen, setAllergen] = useState('');
+    const [error, toggleError] = useState(false);
 
     useEffect(() => {
         async function getAllergenData() {
+            toggleError(false);
+
             try {
                 const result = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?intolerances=${allergen}=false&addRecipeInformation=true&apiKey=${apiKey}`);
-                console.log(result.data);
+                console.log(result.data.results);
                 setAllergenData(result.data);
+
+                if (result.data.results.length === 0) {
+                    throw new SyntaxError(error);
+                }
+
             } catch (e) {
                 console.error(e);
+                toggleError(true);
             }
         }
 
@@ -29,8 +38,9 @@ function AllergenFreePage() {
     return (
         <>
             <NavBar/>
-
             <SearchBarAllergen setAllergenHandler={setAllergen}/>
+            {error && <p className="error">Geen recept gevonden helaas, probeer opnieuw</p>}
+
 
             <div className="kitchen-names">
                 <p className="region">Kies uit:</p>

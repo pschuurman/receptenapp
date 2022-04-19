@@ -30,10 +30,11 @@ function MoodForFoodPage() {
         <>
             <NavBar/>
 
-            <SearchBarMood setMoodHandler={setMood}/>
+
 
             <div className="kitchen-names">
-                <p className="region">Kies uit:</p>
+                <p className="region">Waar je ook voor in de stemming voor bent er is geen gevoel waar geen recept bij past.
+                Kies hier uit:</p>
                 <p className="region">dessert</p>
                 <p className="region">bread</p>
                 <p className="region">breakfast</p>
@@ -41,8 +42,11 @@ function MoodForFoodPage() {
                 <p className="region">sauce</p>
                 <p className="region">marinade</p>
                 <p className="region">fingerfood snack</p>
-                <p className="region">drink</p>
-
+                <p className="region">drink.</p>
+                <p className="region">En krijg een lekker recept dat helemaal past bij je gevoel</p>
+            </div>
+            <div className="kitchen-names">
+                <SearchBarMood setMoodHandler={setMood}/>
             </div>
             {moodForData && <>
                 <div className="choose-kitchen">{moodForData.results.map((moodList) => {

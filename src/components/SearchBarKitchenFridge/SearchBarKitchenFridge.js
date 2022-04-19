@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-function SearchBarKitchen({setKitchenHandler}) {
+function SearchBarKitchenFridge({setKitchenHandler}) {
     const [kitchen, setKitchen] = useState('');
 
     function onFormSubmit(e) {
@@ -17,7 +17,7 @@ function SearchBarKitchen({setKitchenHandler}) {
                 name="search"
                 value={kitchen}
                 onChange={(e) => setKitchen(e.target.value)}
-                placeholder="Vul je favourite keuken in"
+                placeholder="Wat heb je nog in koelkast?"
             />
 
             <button type="submit">
@@ -27,5 +27,5 @@ function SearchBarKitchen({setKitchenHandler}) {
     );
 }
 
-export default SearchBarKitchen;
+export default SearchBarKitchenFridge;
 

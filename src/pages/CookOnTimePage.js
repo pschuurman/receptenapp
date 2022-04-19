@@ -8,16 +8,25 @@ const apiKey = '5ab533819047439182158dd8d85e7c56';
 
 function CookOnTimePage() {
     const [cookData, setCookData] = useState(null);
-    const [minutes, setMinutes] = useState('');
+    const [minutes, setMinutes] = useState(null);
+    const [error, toggleError] = useState(false)
 
     useEffect(() => {
         async function getAllergenData() {
+            toggleError(false);
+
             try {
                 const result = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?maxReadyTime=${minutes}&addRecipeInformation=true&apiKey=${apiKey}`);
                 console.log(result.data);
                 setCookData(result.data);
+
+                if (result.data.results.length === 0) {
+                    throw new SyntaxError(error);
+                }
+
             } catch (e) {
                 console.error(e);
+                toggleError(true)
             }
         }
 
@@ -31,6 +40,7 @@ function CookOnTimePage() {
             <NavBar/>
 
             <SearchBarAllergen setAllergenHandler={setMinutes}/>
+            {error && <h6>Geen recept gevonden helaas</h6>}
 
             {cookData && <>
                 <div className="choose-kitchen">{cookData.results.map((cookList) => {
