@@ -8,6 +8,8 @@ import SurpriseMePage from './pages/SupriseMePage';
 import WhatsInYourFridgePage from './pages/WhatsInYourFridgePage';
 import LoginPage from './pages/LoginPage';
 import CookOnTimePage from "./pages/CookOnTimePage";
+import RegisterPage from "./pages/RegisterPage";
+import ProfilePage from "./pages/ProfilePage";
 
 
 function App () {
@@ -36,6 +38,12 @@ function App () {
             </Route>
             <Route path="/inloggen">
                 <LoginPage />
+            </Route>
+            <Route path="/aanmelden">
+                <RegisterPage />
+            </Route>
+            <Route path="/profiel">
+                <ProfilePage />
             </Route>
         </Switch>
 
