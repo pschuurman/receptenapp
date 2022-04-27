@@ -3,29 +3,28 @@ import NavBar from "../components/NavBar/NavBar";
 import {useHistory} from "react-router-dom";
 import axios from "axios";
 
-function LoginPage() {
+function RegisterPage() {
     const [email, setEmail] = useState('');
     const [userName, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [user, setRole] = useState('');
 
-
-
     const history = useHistory();
 
-    async function handleSubmit(e) {
+
+    async function RegisterUser(e) {
         e.preventDefault()
         try {
             const response = await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signup',
-            {
-                "username": userName,
-                "email": email,
-                "password": password,
-                "role": [user]
-            });
+                {
+                    "username": userName,
+                    "email": email,
+                    "password": password,
+                    "role": [user]
+                });
             console.log(response)
 
-        history.push("/inloggen")
+            history.push("/inloggen")
         } catch (e) {
             console.error(e);
 
@@ -38,7 +37,7 @@ function LoginPage() {
         <>
             <NavBar/>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={RegisterUser}>
                 <label htmlFor="email">
                     Email:
                     <input type="email"
@@ -63,6 +62,7 @@ function LoginPage() {
                            value={password}
                     />
                 </label>
+
                 <label htmlFor="role">
                     Role:
                     <input type="text"
@@ -71,7 +71,6 @@ function LoginPage() {
                            value={user}
                     />
                 </label>
-
 
                 <button type="submit">Verzenden</button>
             </form>
@@ -82,4 +81,4 @@ function LoginPage() {
     );
 }
 
-export default LoginPage;
+export default RegisterPage;

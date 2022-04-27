@@ -1,20 +1,16 @@
-import Choosekitchen from "../components/ChooseKitchen/Choosekitchen";
-import SurpriseMe from "../components/SurpriseMe/SurpriseMe";
-import AllergyFree from "../components/AllergyFree/AllergyFree";
-import WhatsInYourFridge from "../components/WhatsInYourFridge/WhatsInYourFridge";
-import MoodForFood from "../components/MoodForFood/MoodForFood";
-import CookOnTime from "../components/CookOnTime/CookOnTime";
 import keuken from "../assets/FavouriteKitchen.jpg";
-import inhoudkoelkast from "../assets/WatInKoelkast.jpg"
-import voorelkestemmingiets from "../assets/Stemming.jpg"
-import laatjeverrassen from "../assets/Surprise.jpg"
-import allergenenvrij from "../assets/allergievrij.jpg"
-import zoekrecept from "../assets/kookboek.jpg"
-import NavBar from "../components/NavBar/NavBar";
+import inhoudkoelkast from "../assets/WatInKoelkast.jpg";
+import voorelkestemmingiets from "../assets/Stemming.jpg";
+import laatjeverrassen from "../assets/Surprise.jpg";
+import allergenenvrij from "../assets/allergievrij.jpg";
+import zoekrecept from "../assets/kookboek.jpg";
 import './HomePage.css';
+import {Link} from "react-router-dom";
+import Tile from "../components/Tile/Tile";
+import NavBar from "../components/NavBar/NavBar";
 
 
-function Homepage () {
+function Homepage() {
     return (
         <>
             <NavBar />
@@ -23,36 +19,49 @@ function Homepage () {
             <div className="homepage-container">
 
 
-                <Choosekitchen
-                    image={keuken}
-                    title="Kies je favoriete keuken"
-                />
+                <Link to="kies-je-keuken">
+                    <Tile
+                        image={keuken}
+                        title={"Kies je favoriete keuken"}
+                    />
+                </Link>
 
-                <WhatsInYourFridge
-                image={inhoudkoelkast}
-                title={"Wat kan ik maken?"}
-                />
+                <Link to="wat-kan-ik-maken">
+                    <Tile
+                        image={inhoudkoelkast}
+                        title={"Wat kan ik maken?"}
+                    />
+                </Link>
 
-                <MoodForFood
-                image={voorelkestemmingiets}
-                title={"Voor elke stemming iets"}
+                <Link to="voor-elke-stemming-iets">
+                    <Tile
+                    image={voorelkestemmingiets}
+                    title={"Voor elke stemming iets"}
                 />
+                </Link>
 
 
-                <SurpriseMe
-                image={laatjeverrassen}
-                title={"Laat je verrassen"}
+                <Link to="laat-je-verrassen">
+                    <Tile
+                    image={laatjeverrassen}
+                    title={"Laat je verrassen"}
                 />
+                </Link>
 
-                <AllergyFree
-                image={allergenenvrij}
-                title={"Kook allergenenvrij"}
+                <Link to="kook-allergenenvrij">
+                    <Tile
+                    image={allergenenvrij}
+                    title={"Kook allergenenvrij"}
                 />
+                </Link>
 
-                <CookOnTime
-                image={zoekrecept}
-                title={"Hoeveel tijd heb je?"}
+                <Link to="kook-op-tijd">
+                    <Tile
+                    image={zoekrecept}
+                    title={"Hoeveel tijd heb je?"}
                 />
+                </Link>
+
 
             </div>
         </>

@@ -1,5 +1,5 @@
-import React from 'react';
-import {Switch, Route } from 'react-router-dom';
+import React, {useContext} from 'react';
+import {Switch, Route, Redirect} from 'react-router-dom';
 import Homepage from './pages/Homepage';
 import AllergyFreePage from './pages/AllergyFreePage';
 import ChooseKitchenPage from './pages/ChooseKitchenPage';
@@ -10,9 +10,11 @@ import LoginPage from './pages/LoginPage';
 import CookOnTimePage from "./pages/CookOnTimePage";
 import RegisterPage from "./pages/RegisterPage";
 import ProfilePage from "./pages/ProfilePage";
-
+import {AuthContext} from "./context/AuthContext";
 
 function App () {
+    const { isAuth } = useContext(AuthContext);
+
     return (
         <Switch>
             <Route exact path="/">
@@ -43,7 +45,7 @@ function App () {
                 <RegisterPage />
             </Route>
             <Route path="/profiel">
-                <ProfilePage />
+                {isAuth ?  <ProfilePage /> : <Redirect to="/" />}
             </Route>
         </Switch>
 
