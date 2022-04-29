@@ -2,11 +2,11 @@
 
 ## Available Scripts
 
-In the project directory, you can run:
+To start this project go to your terminal and type in: 
 
 ### `npm start`
 
-Runs the app in the development mode.\
+This will runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
